@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    PROJECT_ID = 'dataloop-project-463316'
+    PROJECT_ID = 'torq-project-465115'
     REGION = 'us-central1'
     REPO_NAME = 'frontend-ci'
     IMAGE_NAME = 'frontend-image'

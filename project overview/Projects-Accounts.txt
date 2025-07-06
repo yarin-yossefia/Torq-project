@@ -2,7 +2,7 @@ GCP ACCOUNT
 djsstorm@gmail.com
 sagiyos5563
 
-Jenkins - http://34.134.130.126:8080/
+Jenkins - http://34.171.8.182:8080/
 yarinyossefia
 yarin123
 
