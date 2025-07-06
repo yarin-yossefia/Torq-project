@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+        TF_IN_AUTOMATION = "true"
+        TF_INPUT = "false"
+    }
+
+    stages {
+        stage('Terraform Init & Plan') {
+            steps {
+                withCredentials([file(credentialsId: 'gcp-terraform-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                        dir("terraform/tenants/${params.tenant}/${params.environment}") {
+                            sh 'terraform init -input=false'
+                            sh 'terraform validate'
+                            sh 'terraform plan -out=tfplan'
+                        }
+                }
+            }
+        }
+
+        stage('Approval') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'ConfirmApply', message: 'Proceed with Terraform apply?',
+                        parameters: [
+                            choice(name: 'Action', choices: ['Yes', 'No'], description: 'Choose whether to apply the changes')
+                        ]
+                    )
+                    if (userInput != 'Yes') {
+                        error("User chose not to proceed with apply ❌")
+                    }
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                withCredentials([file(credentialsId: 'gcp-terraform-service-account', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                        dir("terraform/tenants/${params.tenant}/${params.environment}") {
+                            sh 'terraform apply -auto-approve tfplan'
+                        }
+                }
+            }
+        }
+    }
+}

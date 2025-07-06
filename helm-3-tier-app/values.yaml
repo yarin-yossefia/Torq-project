@@ -1,0 +1,22 @@
+frontend:
+  image: us-central1-docker.pkg.dev/dataloop-project-463316/frontend-ci/frontend-image:latest
+  port: 80
+
+backend:
+  image: us-central1-docker.pkg.dev/dataloop-project-463316/backend-ci/backend-image:latest
+  port: 3000
+
+mongodb:
+  image: mongo:4.4
+  port: 27017
+  persistence:
+    enabled: true
+    size: 5Gi
+
+#serviceAccount:
+#  create: true
+#  name: local-dataloop-project-service-account
+#  gcpServiceAccountName: gke-dataloop-project-service-account
+
+#gcp:
+#  projectId: dataloop-project-463316
