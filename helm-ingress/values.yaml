@@ -2,8 +2,6 @@ ingress-nginx:
   controller:
     service:
       type: LoadBalancer
-      loadBalancerSourceRanges:
-        - "5.29.17.230/32"
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "10254"
@@ -15,7 +13,6 @@ ingress-nginx:
 
 frontendIngress:
   host: ""
-  tlsSecretName: ""
   serviceName: "frontend"
   servicePort: 80
 
