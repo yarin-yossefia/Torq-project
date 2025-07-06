@@ -10,7 +10,17 @@ ingress-nginx:
     podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "10254"
-
+    replicaCount: 3
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: ingress-nginx
+                app.kubernetes.io/component: controller
+            topologyKey: kubernetes.io/hostname
 frontendIngress:
   host: ""
   serviceName: "frontend"
