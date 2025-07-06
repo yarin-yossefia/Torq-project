@@ -1,6 +1,6 @@
-project_id   = "dataloop-project-463316"
+project_id   = "torq-project-465115"
 region       = "us-central1"
 zone         = "us-central1-a"
-cluster_name = "company-a-staging-gke-cluster"
+cluster_name = "staging-gke-cluster"
 machine_type = "e2-medium"
  
