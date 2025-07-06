@@ -1,0 +1,5 @@
+pod anti affinitiy
+replicas to 3 in ingress frontend and backend 
+liveness and rediness probe
+Horizontal Pod Autoscaler
+use outputs istead od svc name frontend to backend and DB
