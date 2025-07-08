@@ -1,4 +1,0 @@
-
-liveness and rediness probe
-Horizontal Pod Autoscaler
-use outputs instead of svc name frontend to backend and DB
