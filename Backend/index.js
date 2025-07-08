@@ -3,10 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-// Health check endpoint for Liveness Probe
-app.get('/healthz', (req, res) => {
-  res.status(200).send('OK');
-});
 
 // Connect to MongoDB
 mongoose.connect('mongodb://mongo:27017/taskdb', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -30,6 +26,11 @@ const taskSchema = new mongoose.Schema({
 const Task = mongoose.model('Task', taskSchema);
 
 // Routes
+
+// Health check endpoint for Liveness Probe
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
+});
 
 // GET /tasks - Retrieve all tasks
 app.get('/tasks', async (req, res) => {
