@@ -12,13 +12,19 @@ spec:
       labels:
         app: frontend
     spec:
-#      serviceAccountName: .Values.serviceAccount.name
       containers:
       - name: frontend
         image: {{ .Values.frontend.image }}
         imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.frontend.port }}
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
