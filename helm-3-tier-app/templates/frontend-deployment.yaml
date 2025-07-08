@@ -20,7 +20,7 @@ spec:
         - containerPort: {{ .Values.frontend.port }}
         resources:
           requests:
-            cpu: "100m"
+            cpu: "50"
             memory: "128Mi"
           limits:
             cpu: "500m"
