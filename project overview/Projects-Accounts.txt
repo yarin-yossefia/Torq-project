@@ -12,3 +12,7 @@ admin
 prom-operator
 
 webapp- http://torq-production.com/
+
+/etc/hosts
+
+104.197.136.91 torq-production.com

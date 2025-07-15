@@ -1,12 +1,10 @@
 prometheus:
-  server:
     extraScrapeConfigs: |
-      - job_name: 'nginx'
-        metrics_path: /nginx_metrics
+      - job_name: nginx
+        metrics_path: /metrics
         static_configs:
-          - targets: ['yarin.services.svc.cluster.local:80']
-            labels:
-              instance: nginx-frontend
+          - targets:
+              - frontend.services.svc.cluster.local:9113
 
 grafana:
   adminPassword: prom-operator

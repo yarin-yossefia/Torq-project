@@ -41,6 +41,19 @@ spec:
           periodSeconds: 5
           timeoutSeconds: 3
           failureThreshold: 1
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:latest
+        args:
+          - --nginx.scrape-uri=http://localhost/nginx_metrics
+        ports:
+          - containerPort: 9113
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
