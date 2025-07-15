@@ -1,4 +1,11 @@
-prometheus: {}
+prometheus:
+  server:
+    extraScrapeConfigs: |
+      - job_name: 'nginx'
+        static_configs:
+          - targets: ['frontend:80/nginx_metrics']
+            labels:
+              instance: nginx-frontend
 grafana:
   adminPassword: prom-operator
   ingress:
